@@ -1,16 +1,6 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-// import App from './App';
-import registerServiceWorker from './registerServiceWorker';
-import './index.css';
-import Navbar from './components/navbar.jsx'
-import {
-  BrowserRouter as Router,
-  Route
-} from 'react-router-dom';
 
-class App extends React.Component{
-
+//CAMERA//
+// 
 // let video = document.querySelector('video');
 // let canvas = document.querySelector('canvas');
 // let ctx = canvas.getContext('2d');
@@ -39,21 +29,22 @@ class App extends React.Component{
 // }, errorCallback);
 
 
+$(document).ready(() => {
 
-// component links
-render() {
-  return(
-    <Router>
-    <div className="container">
-      <Navbar/>
-      </div>
-      </Router>
-  )
-}
+//AJAX//
 
+$.ajax({
+  method: 'GET',
+  url:'https://www.ncdc.noaa.gov/cdo-web/api/v2/datasets',
+  datatype: 'json',
+  headers:{ token: 'UmpKojYLhlmRvMCWdlTdgeSVWWFxKFGu' },
 
+  success: function(data) {
+    let noaaData = data
+    console.log(noaaData);
+  },
+  error: function() {
+  }
+})
 
-}
-
-ReactDOM.render(<App />, document.getElementById('root'));
-registerServiceWorker();
+})
